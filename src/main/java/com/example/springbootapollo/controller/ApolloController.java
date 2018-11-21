@@ -1,11 +1,15 @@
 package com.example.springbootapollo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ApolloController {
+
+    @Autowired
+    Config config;
 
     @Value("${ip}")
     String ip;
@@ -15,6 +19,8 @@ public class ApolloController {
 
     @GetMapping("/ip")
     String getIp(){
+        System.out.println("********  "+config.getPort());
+        System.out.println("********  "+config.getEnabled());
         return ip;
     }
 
